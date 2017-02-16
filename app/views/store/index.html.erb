@@ -3,5 +3,7 @@
 <% end %>
 
 <% @items.each do |item| %>
-  <p><%= item.title %> | <%= number_to_currency(item.price) %> | <%= button_to 'Add to Cart', line_items_path(item_id: item) %></p>
+  <% if item.inventory > 0 %>
+    <p><%= item.title %> | <%= number_to_currency(item.price.to_f/100) %> | <%= button_to 'Add to Cart', line_items_path(item_id: item) %></p>
+  <% end %>
 <% end %>
